@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Page</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<div class="container">
+		<h1>Login</h1>
+		<form id="login-form" action="" method="POST">
+			<label for="username">Username:</label>
+			<input type="text" id="username" name="username" required>
+			<label for="password">Password:</label>
+			<input type="password" id="password" name="password" required>
+			<input type="submit" value="Login">
+			<p>Don't have an account? <a href="signup.html">Sign up</a></p>
+		</form>
+	</div>
+	<script>
+		const loginForm = document.querySelector('#login-form');
+
+		loginForm.addEventListener('submit', (e) => {
+			e.preventDefault();
+
+			// Get the username and password values from the form
+			const username = document.querySelector('#username').value;
+			const password = document.querySelector('#password').value;
+
+			// Get the saved username and password from local storage
+			const savedUsername = localStorage.getItem('username');
+			const savedPassword = localStorage.getItem('password');
+
+			// Check if the entered username and password match the saved values
+			if (savedUsername && savedPassword && username === savedUsername && password === savedPassword) {
+				// Redirect to the quiz page
+				window.location.href = 'mcq.html';
+			} else {
+				alert('Invalid username or password. Please try again.');
+			}
+		});
+	</script>
+</body>
+</html>
